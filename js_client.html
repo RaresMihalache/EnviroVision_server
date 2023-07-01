@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type = "text/javascript">
+        var ws = new WebSocket("ws://192.168.1.8/ws");
+ 
+        ws.onopen = function() {
+            window.alert("Connected");
+         };
+ 
+         ws.onmessage = function(evt) {
+	    if(evt.data.includes("Sensor 1"))
+                document.getElementById("display").innerHTML  =  evt.data + " cm (UL)";
+	    if(evt.data.includes("Sensor 3"))
+		document.getElementById("display3").innerHTML  =  evt.data + " cm (UR)";
+	    if(evt.data.includes("Sensor 2"))
+                document.getElementById("display2").innerHTML  =  evt.data + " cm (DR)";
+	    if(evt.data.includes("Sensor 4"))
+		document.getElementById("display4").innerHTML  =  evt.data + " cm (DL)";
+        };
+ 
+      </script>
+   </head>
+ 
+   <body>
+      <div>
+         <p id = "display">Not connected</p>
+	 <p id = "display3"></p>
+	 <p id = "display2"></p>
+	 <p id = "display4"></p>
+      </div>
+   </body>
+</html>
